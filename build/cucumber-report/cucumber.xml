@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="28.315">
+    <testcase classname="Add specific products to cart" name="The most expensive Sketchbook and any Turntable Mat are added to cart" time="28.176">
+        <system-out>
+            <![CDATA[Given User navigates to "https://etsy.com"..................................passed
+When User searches for "Sketchbook".........................................passed
+And User sorts by ascending prices..........................................passed
+And User adds the most expensive "Sketchbook" to the cart...................passed
+And User searches for "Turntable Mat".......................................passed
+And User adds any "Turntable Mat" to the cart...............................passed
+Then the added items should be listed in the cart...........................passed
+]]>
+        </system-out>
+    </testcase>
+</testsuite>
