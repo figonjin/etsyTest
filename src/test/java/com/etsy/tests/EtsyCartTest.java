@@ -27,7 +27,6 @@ public class EtsyCartTest {
     private final ItemCart itemCartPO = new ItemCart();
     private final ItemListing itemListingPO = new ItemListing();
 
-
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
@@ -61,12 +60,6 @@ public class EtsyCartTest {
         searchPagePO.searchForItem(keyword);
     }
 
-
-    /*
-    Due to etsy's price sorting algorithm being unreliable and putting random lower/higher priced items in the middle of
-    their own "sorted" list (and after removing Ad prices), the only reliable way of ensuring prices are sorted correctly is to compare the price
-    of the first and last elements, on top of making sure the URL has the correct parameter
-    */
     @And("User sorts by ascending prices")
     public void sortProductsByAscPrice() {
         searchPagePO.sortResultsPriceAsc(driver);
@@ -74,9 +67,6 @@ public class EtsyCartTest {
         searchPagePO.validatePrices(filteredList, "ascending");
     }
 
-    /*As etsy does not seem to offer proper pagination access client-side, and infinite scrolling was removed
-    at some point in the past, the most reasonable way to grab the most expensive item is to sort by descending price
-     */
     @And("User adds the most expensive {string} to the cart")
     public void addExpensiveItem(String keyword) {
         searchPagePO.sortResultsPriceDesc(driver);

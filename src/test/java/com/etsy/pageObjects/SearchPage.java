@@ -48,6 +48,9 @@ public class SearchPage {
         }
     }
 
+    /*As etsy does not seem to offer proper pagination access client-side, and infinite scrolling was removed
+    at some point in the past, the cheapest way to grab the most expensive item is to sort by descending price
+    */
     public void sortResultsPriceDesc(WebDriver driver) {
         while(!driver.getCurrentUrl().contains("&order=price_desc")) {
             sortingOptions.click();
@@ -62,6 +65,11 @@ public class SearchPage {
         return filteredList;
     }
 
+    /*
+    Due to etsy's price sorting algorithm being unreliable and putting random lower/higher priced items in the middle of
+    their own "sorted" list (and after removing Ad prices), the only reliable way of ensuring prices are sorted correctly is to compare the price
+    of the first and last elements, on top of making sure the URL has the correct parameter
+    */
     public void validatePrices(List<WebElement> productList, String priceOrder) {
         Float pageFirstProductPrice = Float.valueOf(productList.get(0).findElement(By.className("currency-value")).getText().replaceAll(",", ""));
         Float pageLastProductPrice = Float.valueOf(productList.get(productList.size() - 1).findElement(By.className("currency-value")).getText().replaceAll(",", ""));
